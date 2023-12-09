@@ -2,6 +2,7 @@
 pragma solidity ^0.8.18;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 // PUSH Comm Contract Interface
 interface IPUSHCommInterface {
@@ -89,13 +90,13 @@ contract Messaging is Ownable {
                 string(
                     // We are passing identity here: https://docs.epns.io/developers/developer-guides/sending-notifications/advanced/notification-payload-types/identity/payload-identity-implementations
                     abi.encodePacked(
-                        "0", // this represents minimal identity, learn more: https://push.org/docs/notifications/notification-standards/notification-standards-advance/#notification-identity
+                        Strings.toString(_message.identity), // this represents minimal identity, learn more: https://push.org/docs/notifications/notification-standards/notification-standards-advance/#notification-identity
                         "+", // segregator
-                        "3", // define notification type:  https://push.org/docs/notifications/build/types-of-notification (1, 3 or 4) = (Broadcast, targeted or subset)
+                        Strings.toString(_message.notif), // define notification type:  https://push.org/docs/notifications/build/types-of-notification (1, 3 or 4) = (Broadcast, targeted or subset)
                         "+", // segregator
-                        "Hi", // Message title.
+                        _message.title, // Message title.
                         "+", // segregator
-                        "Body" //  Message body
+                        _message.body //  Message body
                     )
                 )
             )
