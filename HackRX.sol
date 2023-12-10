@@ -24,7 +24,7 @@ struct Message {
     string body;
 }
 
-contract Messaging is Ownable {
+contract HackRX is Ownable {
     // EPNS COMM ADDRESS ON ETHEREUM Sepolia, CHECK THIS: https://docs.epns.io/developers/developer-tooling/epns-smart-contracts/epns-contract-addresses
     address constant EPNS_COMM_ADDRESS =
         0x0C34d54a09CFe75BCcd878A469206Ae77E0fe6e7;
